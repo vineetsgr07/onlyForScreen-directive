@@ -18,6 +18,7 @@ export class OnlyForScreenDirective {
 
   //TODO: Fix this, partially Not Working
   @HostListener("window:resize") onResize() {
+    this.el.nativeElement.style.display = "none";
     this.checkWidth();
   }
 
@@ -28,11 +29,11 @@ export class OnlyForScreenDirective {
       return (this.el.nativeElement.style.display = "inline");
     }
 
-    if (width > 768 && width <= 992) {
+    if (width > 768 && width <= 992 && this.onlyForScreen === "tablet") {
       this.el.nativeElement.style.display = "inline";
     }
 
-    if (width > 992) {
+    if (width > 992 && this.onlyForScreen === "desktop") {
       this.el.nativeElement.style.display = "inline";
     }
   }
